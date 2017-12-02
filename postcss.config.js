@@ -1,4 +1,4 @@
-module.exports = (env) => ({    
+module.exports = (env) => ({
     plugins: {
         'autoprefixer': {
             browsers: ['last 3 versions', '> 1%']
@@ -8,11 +8,12 @@ module.exports = (env) => ({
         },
         'cssnano': env === 'production' ? {
             preset: ['default',
-        {
-            discardComments: {
-                removeAll: true,
-            },
-        }]
+                {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }
+            ]
         } : {}
-    }   
+    }
 })
