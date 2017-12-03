@@ -1,2 +1,2 @@
-import 'src/scss/style.scss'
+import 'normalize.css'
 import './blog.scss'

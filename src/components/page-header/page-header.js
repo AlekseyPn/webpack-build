@@ -1,4 +1,1 @@
-// document.addEventListener('DOMContentLoaded', function(){});
-// (function(){
-// код
-// }());
+import './page-header.scss'

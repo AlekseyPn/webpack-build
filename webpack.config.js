@@ -7,8 +7,9 @@ const devserver = require('./webpack_modules/devserver');
 const babel = require('./webpack_modules/babel');
 const cssExtract = require('./webpack_modules/css.extract');
 const style = require('./webpack_modules/scss');
-const uglifyJs = require('./webpack_modules/uglify')
-const cleanUp = require('clean-webpack-plugin')
+const css = require('./webpack_modules/css');
+const uglifyJs = require('./webpack_modules/uglify');
+const cleanUp = require('clean-webpack-plugin');
 
 const PATHS = {
     source: path.join(__dirname, 'src'),
@@ -17,20 +18,14 @@ const PATHS = {
 
 const config = merge(
     [{
-            entry: {
-                'index': `${PATHS.source}/pages/index.js`,
-                'blog': `${PATHS.source}/pages/blog/blog.js`
+            entry: {                
+                'blog': `${PATHS.source}/pages/blog/blog.js`,                                
             },
             output: {
                 path: PATHS.build,
                 filename: 'js/[name].js'
             },
-            plugins: [
-                new HtmlWebpackPlugin({
-                    filename: 'index.html',
-                    chunks: ['index', 'common'],
-                    template: `${PATHS.source}/pages/index.pug`
-                }),
+            plugins: [                
                 new HtmlWebpackPlugin({
                     filename: 'blog.html',
                     chunks: ['blog', 'common'],
@@ -42,14 +37,15 @@ const config = merge(
                 new webpack.ProvidePlugin({
                     $: 'jquery',
                     jQuery: 'jquery',
-                    _: 'lodash'
+                    _: 'lodash'                    
                 }),
                 new cleanUp('build')
             ],
             resolve: {
                 alias: {
                     src: path.resolve(__dirname, 'src/'),
-                    modules: path.resolve(__dirname, 'node_modules/')
+                    modules: path.resolve(__dirname, 'node_modules/'),
+                    scss_modules: path.resolve(__dirname, 'src/scss')
                 }
             }
         },
@@ -71,7 +67,8 @@ module.exports = function (env) {
         return merge([{},
             config,            
             devserver(),
-            style()
+            style(),
+            css()            
         ])
     }
 }
