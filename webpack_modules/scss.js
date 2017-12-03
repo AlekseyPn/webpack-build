@@ -1,17 +1,18 @@
 const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function (paths) {
     return {
         module: {
             rules: [
                 {
                     test: /(\.scss)$/,
-                    include: paths,
-                    use: ExtractTextPlugin.extract({
-                        publicPath: '../',
-                        fallback: 'style-loader',
-                        use: [
+                    include: paths,                                        
+                    use: [
+                            {
+                              loader: 'style-loader', options: {
+                                sourceMap: true
+                              }
+                            },
                             {
                               loader: 'css-loader',
                               options: {                                
@@ -32,17 +33,15 @@ module.exports = function (paths) {
                             {
                                 loader: 'sass-resources-loader',
                                 options: {
-                                    resources: [path.resolve(__dirname, '../src/scss/variables.scss'),                                    
-                                    path.resolve(__dirname, '../src/scss/components.scss')]
+                                    resources: [
+                                        path.resolve(__dirname, '../src/scss/variables.scss'),
+                                        path.resolve(__dirname, '../src/scss/components.scss')
+                                    ]
                                 }
                             }
-                        ]
-                    })                                   
+                    ]                    
                 }
             ]
-        },
-        plugins: [
-            new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
-        ],
+        }
     }
 }
