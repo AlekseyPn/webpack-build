@@ -9,6 +9,7 @@ const cssExtract = require('./webpack_modules/css.extract');
 const style = require('./webpack_modules/scss');
 const css = require('./webpack_modules/css');
 const uglifyJs = require('./webpack_modules/uglify');
+const imageLoader = require('./webpack_modules/image_loader')
 const cleanUp = require('clean-webpack-plugin');
 
 const PATHS = {
@@ -56,7 +57,8 @@ const config = merge(
             }
         },
         babel(),
-        pug()
+        pug(),
+        imageLoader()
     ]
 );
 
