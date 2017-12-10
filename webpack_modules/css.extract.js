@@ -1,12 +1,11 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
-const path = require('path')
+const path = require('path');
 module.exports = function (paths) {
     return {
         module: {
             rules: [
                 {
-                    test: /(\.scss|\.css)$/,
+                    test: /\.scss$/,
                     include: paths,
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
@@ -24,11 +23,19 @@ module.exports = function (paths) {
                             }
                         ]
                     }),
+                },
+                {
+                    test: /\.css$/,
+                    include: paths,
+                    use: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'postcss-loader']
+                    })
                 }
             ]
         },
         plugins: [
-            new ExtractTextPlugin({ filename: './css/styles.min.css', allChunks: true }),
+            new ExtractTextPlugin('./css/[name].css'),
         ],
     }
 }

@@ -19,7 +19,8 @@ const PATHS = {
 const config = merge(
     [{
             entry: {                
-                'blog': `${PATHS.source}/pages/blog/blog.js`,                                
+                'blog': `${PATHS.source}/pages/blog/blog.js`,
+                'about': `${PATHS.source}/pages/about/about.js`,                                    
             },
             output: {
                 path: PATHS.build,
@@ -30,6 +31,11 @@ const config = merge(
                     filename: 'blog.html',
                     chunks: ['blog', 'common'],
                     template: `${PATHS.source}/pages/blog/blog.pug`
+                }),
+                new HtmlWebpackPlugin({
+                    filename: 'about.html',
+                    chunks: ['about', 'common'],
+                    template: `${PATHS.source}/pages/about/about.pug`
                 }),
                 new webpack.optimize.CommonsChunkPlugin({
                     name: 'common'

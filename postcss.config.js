@@ -6,7 +6,7 @@ module.exports = (env) => ({
         'css-mqpacker': {
             sort: true
         },
-        'cssnano': env === 'production' ? {
+        'cssnano': {
             preset: ['default',
                 {
                     discardComments: {
@@ -14,6 +14,6 @@ module.exports = (env) => ({
                     },
                 }
             ]
-        } : {}
+        }
     }
 })
