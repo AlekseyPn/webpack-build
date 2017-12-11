@@ -11,7 +11,6 @@ const css = require('./webpack_modules/css');
 const uglifyJs = require('./webpack_modules/uglify');
 const imageLoader = require('./webpack_modules/image_loader')
 const cleanUp = require('clean-webpack-plugin');
-
 const PATHS = {
     source: path.join(__dirname, 'src'),
     build: path.join(__dirname, 'build')
@@ -27,7 +26,7 @@ const config = merge(
                 path: PATHS.build,
                 filename: 'js/[name].js'
             },
-            plugins: [                
+            plugins: [                                               
                 new HtmlWebpackPlugin({
                     filename: 'blog.html',
                     chunks: ['blog', 'common'],
@@ -48,23 +47,23 @@ const config = merge(
                 }),
                 new cleanUp('build')
             ],
-            resolve: {
+            resolve: {        
                 alias: {
-                    src: path.resolve(__dirname, 'src/'),
-                    modules: path.resolve(__dirname, 'node_modules/'),
-                    scss_modules: path.resolve(__dirname, 'src/scss')
+                    src: path.resolve(__dirname, 'src/'),                    
+                    scss_modules: path.resolve(__dirname, 'src/scss'),
+                    '@sprite': path.resolve(__dirname, 'src/sprite/output')                    
                 }
             }
-        },
+        },        
         babel(),
         pug(),
-        imageLoader()
+        imageLoader(),
     ]
 );
 
 module.exports = function (env) {
     if (env === 'production') {
-        return merge([
+        return merge([            
             config,
             cssExtract(),
             uglifyJs()
@@ -73,7 +72,7 @@ module.exports = function (env) {
     if (env === 'development') {
         config.devtool = 'source-map'
         return merge([{},
-            config,            
+            config,
             devserver(),
             style(),
             css()            
