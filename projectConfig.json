@@ -1,0 +1,14 @@
+{
+  "components": {
+    "menu": [],
+    "page-header": [],
+    "page-footer": [],
+    "mobile-menu": [],
+    "slider": [],
+    "social": []
+  },
+  "pages": {
+    "blog": [],
+    "about": []
+  }
+}
