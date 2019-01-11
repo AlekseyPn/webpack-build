@@ -1,0 +1,30 @@
+{
+  "name": "custom-webpack-build",
+  "version": "0.1.0",
+  "description": "Custom webpack build for practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlekseyPn/webpack-build.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "_fargustian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlekseyPn/webpack-build/issues"
+  },
+  "homepage": "https://github.com/AlekseyPn/webpack-build#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  }
+}
